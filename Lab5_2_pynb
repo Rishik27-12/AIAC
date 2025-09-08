@@ -1,0 +1,912 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyOMbkpgMoyuLM5OPtc1FHhi",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/Rishik27-12/AIAC/blob/main/Lab5_2_pynb\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "d31719b4"
+      },
+      "source": [
+        "## Generate login system code\n",
+        "\n",
+        "### Subtask:\n",
+        "Generate code for a basic login system using Python.\n"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "cb4e7c27"
+      },
+      "source": [
+        "**Reasoning**:\n",
+        "Generate Python code for a basic login system as per the instructions, including a function and a main part for user interaction.\n",
+        "\n"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "task1.py\n"
+      ],
+      "metadata": {
+        "id": "R5ALn9t4NTc_"
+      }
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "bddcdcb3",
+        "outputId": "5904a7a4-2b58-4681-fbf4-d94cc12381dc"
+      },
+      "source": [
+        "def basic_login(username, password):\n",
+        "    \"\"\"\n",
+        "    Basic login function to check username and password.\n",
+        "\n",
+        "    Args:\n",
+        "        username: The username entered by the user.\n",
+        "        password: The password entered by the user.\n",
+        "\n",
+        "    Returns:\n",
+        "        True if login is successful, False otherwise.\n",
+        "    \"\"\"\n",
+        "    # Step 2: Define a simple dictionary to store usernames and passwords\n",
+        "    users = {\n",
+        "        \"testuser\": \"password123\",\n",
+        "        \"anotheruser\": \"securepassword\"\n",
+        "    }\n",
+        "\n",
+        "    # Step 3: Check if the provided username exists\n",
+        "    if username in users:\n",
+        "        # Step 4: Compare the provided password with the stored password\n",
+        "        if users[username] == password:\n",
+        "            return True\n",
+        "        else:\n",
+        "            return False\n",
+        "    else:\n",
+        "        return False\n",
+        "\n",
+        "# Step 6: Main part of the script\n",
+        "if __name__ == \"__main__\":\n",
+        "    entered_username = input(\"Enter username: \")\n",
+        "    entered_password = input(\"Enter password: \")\n",
+        "\n",
+        "    if basic_login(entered_username, entered_password):\n",
+        "        print(\"Login successful!\")\n",
+        "    else:\n",
+        "        print(\"Login failed.\")"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Enter username: rishik\n",
+            "Enter password: password123\n",
+            "Login failed.\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "7c911412"
+      },
+      "source": [
+        "## Review for security vulnerabilities\n",
+        "\n",
+        "### Subtask:\n",
+        "Examine the generated code for hardcoded passwords, plain-text storage, or lack of encryption.\n"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "e480d943"
+      },
+      "source": [
+        "**Reasoning**:\n",
+        "Examine the provided Python code for the `basic_login` function to identify hardcoded passwords, plain-text storage, and lack of encryption.\n",
+        "\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "38e07994",
+        "outputId": "1a0301c3-ba70-4514-f06d-fc057e02151f"
+      },
+      "source": [
+        "# The code for basic_login function is provided in the previous turn.\n",
+        "# We will analyze it here.\n",
+        "\n",
+        "# 1. Hardcoded passwords:\n",
+        "# The 'users' dictionary directly contains usernames and their corresponding passwords\n",
+        "# as plain-text strings within the code.\n",
+        "# Example: \"testuser\": \"password123\", \"anotheruser\": \"securepassword\"\n",
+        "\n",
+        "# 2. Plain-text storage:\n",
+        "# The user credentials are stored in a dictionary within the script's memory\n",
+        "# during execution. These are not stored persistently, but while the script runs,\n",
+        "# they are held in plain text in the 'users' dictionary.\n",
+        "\n",
+        "# 3. Lack of encryption:\n",
+        "# The code does not use any encryption or hashing techniques to store or compare passwords.\n",
+        "# The comparison `users[username] == password` is a direct comparison of plain-text strings.\n",
+        "\n",
+        "print(\"Analysis complete. Identified potential security vulnerabilities:\")\n",
+        "print(\"- Hardcoded passwords directly in the code.\")\n",
+        "print(\"- User credentials stored in plain text in memory during execution.\")\n",
+        "print(\"- No encryption or hashing used for password storage or comparison.\")\n"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Analysis complete. Identified potential security vulnerabilities:\n",
+            "- Hardcoded passwords directly in the code.\n",
+            "- User credentials stored in plain text in memory during execution.\n",
+            "- No encryption or hashing used for password storage or comparison.\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "121cf0be"
+      },
+      "source": [
+        "## Suggest improvements\n",
+        "\n",
+        "### Subtask:\n",
+        "Based on the review, suggest how to make the login system more secure.\n"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "036b8eef"
+      },
+      "source": [
+        "**Reasoning**:\n",
+        "Explain the security risks of the current login system and suggest improvements based on the review.\n",
+        "\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "9d118f01",
+        "outputId": "e2a0d37a-ee14-42d7-bb9a-81d158e09bdf"
+      },
+      "source": [
+        "print(\"Based on the review, here are suggestions to make the login system more secure:\")\n",
+        "\n",
+        "# 1. Explain why hardcoding passwords is a security risk and suggest secure storage\n",
+        "print(\"\\n1. Avoid Hardcoding Passwords:\")\n",
+        "print(\"   Hardcoding passwords directly in the code is a major security risk.\")\n",
+        "print(\"   Anyone with access to the code can see all the credentials.\")\n",
+        "print(\"   Instead of hardcoding, store credentials securely outside the code.\")\n",
+        "print(\"   For simple cases, this could be a secure configuration file with appropriate permissions.\")\n",
+        "print(\"   For production systems, use a database specifically designed for secure credential storage or a secrets management system.\")\n",
+        "\n",
+        "# 2. Explain the risks of plain-text passwords and suggest hashing\n",
+        "print(\"\\n2. Do Not Store or Handle Passwords in Plain Text:\")\n",
+        "print(\"   Storing or handling passwords in plain text (even in memory) makes them vulnerable if the system is compromised.\")\n",
+        "print(\"   If an attacker gains access, they get the actual passwords.\")\n",
+        "print(\"   Instead, use strong, one-way hashing algorithms like bcrypt or scrypt to store password hashes.\")\n",
+        "print(\"   When a user attempts to log in, hash the entered password and compare the hash to the stored hash, never the plain-text passwords.\")\n",
+        "\n",
+        "# 3. Explain the importance of not transmitting passwords in plain text and mention HTTPS\n",
+        "print(\"\\n3. Use Secure Communication Protocols:\")\n",
+        "print(\"   If this login system were part of a web application, transmitting passwords in plain text over a network is highly risky.\")\n",
+        "print(\"   Attackers could intercept the data and steal credentials.\")\n",
+        "print(\"   Always use secure communication protocols like HTTPS (HTTP over TLS/SSL) to encrypt data transmitted between the client and the server.\")\n",
+        "\n",
+        "# 4. Mention other potential security improvements like rate limiting\n",
+        "print(\"\\n4. Implement Rate Limiting:\")\n",
+        "print(\"   To prevent brute-force attacks (where an attacker tries many passwords), implement rate limiting.\")\n",
+        "print(\"   Limit the number of failed login attempts allowed from a specific IP address or username within a certain time frame.\")\n",
+        "print(\"   After several failed attempts, temporarily lock the account or introduce delays.\")\n",
+        "\n",
+        "# 5. Summarize the key recommendations\n",
+        "print(\"\\nSummary of Key Recommendations:\")\n",
+        "print(\"- Store credentials securely outside the code (database, secure config).\")\n",
+        "print(\"- Use strong hashing (bcrypt, scrypt) for password storage and comparison.\")\n",
+        "print(\"- Use secure protocols (like HTTPS for web) for data transmission.\")\n",
+        "print(\"- Implement rate limiting to prevent brute-force attacks.\")"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Based on the review, here are suggestions to make the login system more secure:\n",
+            "\n",
+            "1. Avoid Hardcoding Passwords:\n",
+            "   Hardcoding passwords directly in the code is a major security risk.\n",
+            "   Anyone with access to the code can see all the credentials.\n",
+            "   Instead of hardcoding, store credentials securely outside the code.\n",
+            "   For simple cases, this could be a secure configuration file with appropriate permissions.\n",
+            "   For production systems, use a database specifically designed for secure credential storage or a secrets management system.\n",
+            "\n",
+            "2. Do Not Store or Handle Passwords in Plain Text:\n",
+            "   Storing or handling passwords in plain text (even in memory) makes them vulnerable if the system is compromised.\n",
+            "   If an attacker gains access, they get the actual passwords.\n",
+            "   Instead, use strong, one-way hashing algorithms like bcrypt or scrypt to store password hashes.\n",
+            "   When a user attempts to log in, hash the entered password and compare the hash to the stored hash, never the plain-text passwords.\n",
+            "\n",
+            "3. Use Secure Communication Protocols:\n",
+            "   If this login system were part of a web application, transmitting passwords in plain text over a network is highly risky.\n",
+            "   Attackers could intercept the data and steal credentials.\n",
+            "   Always use secure communication protocols like HTTPS (HTTP over TLS/SSL) to encrypt data transmitted between the client and the server.\n",
+            "\n",
+            "4. Implement Rate Limiting:\n",
+            "   To prevent brute-force attacks (where an attacker tries many passwords), implement rate limiting.\n",
+            "   Limit the number of failed login attempts allowed from a specific IP address or username within a certain time frame.\n",
+            "   After several failed attempts, temporarily lock the account or introduce delays.\n",
+            "\n",
+            "Summary of Key Recommendations:\n",
+            "- Store credentials securely outside the code (database, secure config).\n",
+            "- Use strong hashing (bcrypt, scrypt) for password storage and comparison.\n",
+            "- Use secure protocols (like HTTPS for web) for data transmission.\n",
+            "- Implement rate limiting to prevent brute-force attacks.\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "07e4ae60"
+      },
+      "source": [
+        "## Summary:\n",
+        "\n",
+        "### Data Analysis Key Findings\n",
+        "\n",
+        "*   The initial login system code hardcoded usernames and passwords directly within the script using a Python dictionary.\n",
+        "*   Credentials were handled and compared in plain text during the execution of the basic login function.\n",
+        "*   The system lacked any form of encryption or hashing for password storage or comparison.\n",
+        "*   Storing credentials outside the code, using strong hashing algorithms like bcrypt or scrypt for password storage and comparison, and implementing rate limiting are crucial security improvements.\n",
+        "*   For web-based systems, using secure communication protocols like HTTPS is essential.\n",
+        "\n",
+        "### Insights or Next Steps\n",
+        "\n",
+        "*   The current implementation is highly vulnerable and unsuitable for any real-world use due to the critical security flaws identified.\n",
+        "*   The next step should involve refactoring the code to incorporate the suggested security improvements, starting with removing hardcoded credentials and implementing password hashing.\n"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "--------------------------------------------------------------------------------------------------------"
+      ],
+      "metadata": {
+        "id": "NM1lkUajRYwR"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "task2.py\n"
+      ],
+      "metadata": {
+        "id": "D7cPZPdgOTCc"
+      }
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "659c6666",
+        "outputId": "48fb279b-892b-4443-ae14-ac144f488378"
+      },
+      "source": [
+        "def approve_loan(name):\n",
+        "  \"\"\"Approves a loan based on the applicant's name.\"\"\"\n",
+        "  if name.lower() == \"john\":\n",
+        "    return f\"Loan approved for {name}.\"\n",
+        "  elif name.lower() == \"priya\":\n",
+        "    return f\"Loan approved for {name}.\"\n",
+        "  else:\n",
+        "    return f\"Loan cannot be approved for {name} at this time.\"\n",
+        "\n",
+        "# Test the function\n",
+        "print(approve_loan(\"John\"))\n",
+        "print(approve_loan(\"Priya\"))\n",
+        "print(approve_loan(\"Jane\"))"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Loan approved for John.\n",
+            "Loan approved for Priya.\n",
+            "Loan cannot be approved for Jane at this time.\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "--------------------------------------------------------------------------------------------------"
+      ],
+      "metadata": {
+        "id": "M3GDuuG3Refa"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "task3.py\n"
+      ],
+      "metadata": {
+        "id": "3kch62M1PWiA"
+      }
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "0a0baafb",
+        "outputId": "4ec23c1e-0a1d-414e-816d-ab41f8addc82"
+      },
+      "source": [
+        "def fibonacci_recursive(n):\n",
+        "  \"\"\"\n",
+        "  Calculates the nth Fibonacci number using recursion.\n",
+        "\n",
+        "  The Fibonacci sequence is a series of numbers where each number is the sum\n",
+        "  of the two preceding ones, usually starting with 0 and 1.\n",
+        "  (e.g., 0, 1, 1, 2, 3, 5, 8, 13, ...)\n",
+        "\n",
+        "  Args:\n",
+        "    n: An integer representing the position in the Fibonacci sequence (n >= 0).\n",
+        "\n",
+        "  Returns:\n",
+        "    The nth Fibonacci number.\n",
+        "\n",
+        "  Raises:\n",
+        "    ValueError: If n is a negative integer.\n",
+        "  \"\"\"\n",
+        "  # Input validation: Ensure n is not a negative number\n",
+        "  if n < 0:\n",
+        "    raise ValueError(\"Input must be a non-negative integer.\")\n",
+        "  # Base case 1: The first Fibonacci number is 0\n",
+        "  elif n == 0:\n",
+        "    return 0\n",
+        "  # Base case 2: The second Fibonacci number is 1\n",
+        "  elif n == 1:\n",
+        "    return 1\n",
+        "  # Recursive step: Fibonacci(n) = Fibonacci(n-1) + Fibonacci(n-2)\n",
+        "  else:\n",
+        "    return fibonacci_recursive(n - 1) + fibonacci_recursive(n - 2)\n",
+        "\n",
+        "# Example usage:\n",
+        "num = 10\n",
+        "print(f\"The {num}th Fibonacci number is: {fibonacci_recursive(num)}\")\n",
+        "\n",
+        "num = 0\n",
+        "print(f\"The {num}th Fibonacci number is: {fibonacci_recursive(num)}\")\n",
+        "\n",
+        "num = 1\n",
+        "print(f\"The {num}st Fibonacci number is: {fibonacci_recursive(num)}\")\n",
+        "\n",
+        "# Example of handling negative input\n",
+        "try:\n",
+        "    fibonacci_recursive(-5)\n",
+        "except ValueError as e:\n",
+        "    print(f\"Error: {e}\")"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "The 10th Fibonacci number is: 55\n",
+            "The 0th Fibonacci number is: 0\n",
+            "The 1st Fibonacci number is: 1\n",
+            "Error: Input must be a non-negative integer.\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "EXPLANATION :\n",
+        "\n",
+        "\n",
+        "This code calculates Fibonacci numbers. The sequence starts with 0 and 1. Each next number is the sum of the previous two (0, 1, 1, 2, 3, 5...).\n",
+        "\n",
+        "The fibonacci_recursive(n) function finds the number at position n.\n",
+        "\n",
+        "It checks for negative input (invalid).\n",
+        "It has direct answers for positions 0 (which is 0) and 1 (which is 1).\n",
+        "For positions greater than 1, it adds the results of the function for the two positions before it (n-1 and n-2). This is the \"recursion\" - the function calling itself to solve simpler steps until it hits the starting points (0 and 1).\n",
+        "Essentially, it breaks down finding a Fibonacci number into finding the two previous ones, until it gets back to the known starting numbers."
+      ],
+      "metadata": {
+        "id": "IfaD1TWgQLAg"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "-------------------------------------------------------------------------\n"
+      ],
+      "metadata": {
+        "id": "PqMomChDRhuu"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "task4.py\n"
+      ],
+      "metadata": {
+        "id": "_LZeExm9Qni0"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "918bb762"
+      },
+      "source": [
+        "# Task\n",
+        "Generate a python code on a job applicant scoring system based on input features (e.g., education, experience, gender, age). Analyze the scoring logic for bias or unfair weightings."
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "db401041"
+      },
+      "source": [
+        "## Generate applicant scoring code\n",
+        "\n",
+        "### Subtask:\n",
+        "Generate Python code for a basic job applicant scoring system based on input features like education, experience, gender, and age.\n"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "83940917"
+      },
+      "source": [
+        "**Reasoning**:\n",
+        "Define a function to calculate the applicant score based on the provided features and weights.\n",
+        "\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "68d541fc",
+        "outputId": "e29abdb8-4cf1-47c0-fb8d-b85e657e9837"
+      },
+      "source": [
+        "def calculate_applicant_score(education, experience, gender, age):\n",
+        "  \"\"\"\n",
+        "  Calculates a score for a job applicant based on given features.\n",
+        "\n",
+        "  Args:\n",
+        "    education: Applicant's education level (e.g., \"Bachelor's\", \"Master's\", \"PhD\").\n",
+        "    experience: Years of relevant experience.\n",
+        "    gender: Applicant's gender (e.g., \"Male\", \"Female\", \"Other\").\n",
+        "    age: Applicant's age.\n",
+        "\n",
+        "  Returns:\n",
+        "    An integer representing the applicant's score.\n",
+        "  \"\"\"\n",
+        "  score = 0\n",
+        "\n",
+        "  # Define weights for each feature - these are example weights and should be reviewed for bias\n",
+        "  weights = {\n",
+        "      \"education\": 0.3,\n",
+        "      \"experience\": 0.4,\n",
+        "      \"gender\": 0.1,\n",
+        "      \"age\": 0.2\n",
+        "  }\n",
+        "\n",
+        "  # Scoring logic based on education\n",
+        "  if education == \"Bachelor's\":\n",
+        "    score += 50 * weights[\"education\"]\n",
+        "  elif education == \"Master's\":\n",
+        "    score += 70 * weights[\"education\"]\n",
+        "  elif education == \"PhD\":\n",
+        "    score += 100 * weights[\"education\"]\n",
+        "  else:\n",
+        "    score += 30 * weights[\"education\"] # Default for other education levels\n",
+        "\n",
+        "  # Scoring logic based on experience (linear scoring)\n",
+        "  score += min(experience * 10, 100) * weights[\"experience\"] # Cap experience score at 100\n",
+        "\n",
+        "  # Scoring logic based on gender - this is an example and needs careful consideration for bias\n",
+        "  if gender == \"Female\":\n",
+        "    score += 10 * weights[\"gender\"]\n",
+        "  elif gender == \"Male\":\n",
+        "    score += 5 * weights[\"gender\"]\n",
+        "  else:\n",
+        "    score += 7 * weights[\"gender\"] # Default for other gender identities\n",
+        "\n",
+        "  # Scoring logic based on age (example: favoring a certain age range)\n",
+        "  if 25 <= age <= 40:\n",
+        "    score += 50 * weights[\"age\"]\n",
+        "  elif age < 25:\n",
+        "    score += 30 * weights[\"age\"]\n",
+        "  else:\n",
+        "    score += 40 * weights[\"age\"]\n",
+        "\n",
+        "  return int(score) # Return score as an integer\n",
+        "\n",
+        "# Example usage:\n",
+        "applicant_data = {\n",
+        "    \"education\": \"Master's\",\n",
+        "    \"experience\": 7,\n",
+        "    \"gender\": \"Female\",\n",
+        "    \"age\": 32\n",
+        "}\n",
+        "\n",
+        "applicant_score = calculate_applicant_score(\n",
+        "    applicant_data[\"education\"],\n",
+        "    applicant_data[\"experience\"],\n",
+        "    applicant_data[\"gender\"],\n",
+        "    applicant_data[\"age\"]\n",
+        ")\n",
+        "\n",
+        "print(f\"Applicant Score: {applicant_score}\")"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Applicant Score: 60\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "330f6ab4"
+      },
+      "source": [
+        "## Analyze scoring logic for bias\n",
+        "\n",
+        "### Subtask:\n",
+        "Examine the generated code's scoring logic for potential biases or unfair weightings, particularly with respect to features like gender and age.\n"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "c6331f94"
+      },
+      "source": [
+        "**Reasoning**:\n",
+        "Examine the provided Python code for the `calculate_applicant_score` function to identify potential biases or unfair weightings, focusing on gender and age.\n",
+        "\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "ed3274be",
+        "outputId": "475840cb-add8-429b-c5f1-b2bf4f89c68b"
+      },
+      "source": [
+        "# The code for calculate_applicant_score function is provided in the previous turn.\n",
+        "# We will analyze its scoring logic for bias here.\n",
+        "\n",
+        "def analyze_scoring_bias(education, experience, gender, age):\n",
+        "    \"\"\"\n",
+        "    Analyzes the scoring logic of calculate_applicant_score for potential biases.\n",
+        "\n",
+        "    Args are for context but the analysis focuses on the logic itself.\n",
+        "    \"\"\"\n",
+        "    print(\"Analyzing the applicant scoring logic for potential biases:\")\n",
+        "\n",
+        "    # Analyze Gender Scoring\n",
+        "    print(\"\\nAnalyzing Gender Scoring:\")\n",
+        "    print(f\"- The scoring logic explicitly assigns different points based on gender:\")\n",
+        "    print(f\"  - 'Female': adds 10 * weights['gender'] ({10 * 0.1})\")\n",
+        "    print(f\"  - 'Male': adds 5 * weights['gender'] ({5 * 0.1})\")\n",
+        "    print(f\"  - 'Other': adds 7 * weights['gender'] ({7 * 0.1})\")\n",
+        "    print(\"- This direct differential scoring based on gender is a clear potential for bias and discrimination.\")\n",
+        "    print(\"- A fair system should ideally not use gender as a scoring factor.\")\n",
+        "\n",
+        "    # Analyze Age Scoring\n",
+        "    print(\"\\nAnalyzing Age Scoring:\")\n",
+        "    print(f\"- The scoring logic assigns different points based on age ranges:\")\n",
+        "    print(f\"  - 25 <= age <= 40: adds 50 * weights['age'] ({50 * 0.2})\")\n",
+        "    print(f\"  - age < 25: adds 30 * weights['age'] ({30 * 0.2})\")\n",
+        "    print(f\"  - age > 40: adds 40 * weights['age'] ({40 * 0.2})\")\n",
+        "    print(\"- While age can sometimes correlate with experience, directly scoring based on age ranges like this can introduce bias.\")\n",
+        "    print(\"- It might unfairly penalize younger or older applicants who may be qualified but fall outside the 'preferred' age range.\")\n",
+        "    print(\"- This approach does not consider individual merit or experience outside these arbitrary age brackets.\")\n",
+        "\n",
+        "    print(\"\\nSummary of Potential Biases Identified:\")\n",
+        "    print(\"- Direct scoring based on gender introduces clear discriminatory potential.\")\n",
+        "    print(\"- Scoring based on arbitrary age ranges can unfairly penalize applicants based on age.\")\n",
+        "    print(\"These weightings and scoring rules for gender and age introduce significant bias into the applicant scoring process.\")\n",
+        "\n",
+        "# Call the analysis function (no need for specific applicant data, the function analyzes the logic)\n",
+        "analyze_scoring_bias(None, None, None, None) # Pass None as args are not used in the analysis"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Analyzing the applicant scoring logic for potential biases:\n",
+            "\n",
+            "Analyzing Gender Scoring:\n",
+            "- The scoring logic explicitly assigns different points based on gender:\n",
+            "  - 'Female': adds 10 * weights['gender'] (1.0)\n",
+            "  - 'Male': adds 5 * weights['gender'] (0.5)\n",
+            "  - 'Other': adds 7 * weights['gender'] (0.7000000000000001)\n",
+            "- This direct differential scoring based on gender is a clear potential for bias and discrimination.\n",
+            "- A fair system should ideally not use gender as a scoring factor.\n",
+            "\n",
+            "Analyzing Age Scoring:\n",
+            "- The scoring logic assigns different points based on age ranges:\n",
+            "  - 25 <= age <= 40: adds 50 * weights['age'] (10.0)\n",
+            "  - age < 25: adds 30 * weights['age'] (6.0)\n",
+            "  - age > 40: adds 40 * weights['age'] (8.0)\n",
+            "- While age can sometimes correlate with experience, directly scoring based on age ranges like this can introduce bias.\n",
+            "- It might unfairly penalize younger or older applicants who may be qualified but fall outside the 'preferred' age range.\n",
+            "- This approach does not consider individual merit or experience outside these arbitrary age brackets.\n",
+            "\n",
+            "Summary of Potential Biases Identified:\n",
+            "- Direct scoring based on gender introduces clear discriminatory potential.\n",
+            "- Scoring based on arbitrary age ranges can unfairly penalize applicants based on age.\n",
+            "These weightings and scoring rules for gender and age introduce significant bias into the applicant scoring process.\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "c31cd1aa"
+      },
+      "source": [
+        "## Explain potential biases and suggest improvements\n",
+        "\n",
+        "### Subtask:\n",
+        "Explain the security risks of the current scoring system and suggest improvements based on the review.\n"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "c4dbd5ea"
+      },
+      "source": [
+        "**Reasoning**:\n",
+        "Explain the security risks of the current scoring system and suggest improvements based on the review.\n",
+        "\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "6b2776cd",
+        "outputId": "e5752db6-6176-4c49-e1ee-b53cc76e4684"
+      },
+      "source": [
+        "print(\"Based on the review of the scoring logic, here's an explanation of the security risks (specifically related to bias) and suggested improvements:\")\n",
+        "\n",
+        "# 1. Explain the identified biases related to gender and age in the scoring logic.\n",
+        "print(\"\\n1. Identified Biases Related to Gender and Age:\")\n",
+        "print(\"   The current scoring system explicitly assigns different scores based on an applicant's gender and age.\")\n",
+        "print(\"   - Gender Bias: Assigning more points to one gender over others is a direct form of discrimination.\")\n",
+        "print(\"   - Age Bias: Favoring a specific age range (25-40) and penalizing younger or older applicants is age discrimination.\")\n",
+        "print(\"   These biases are hardcoded into the scoring logic, making the system inherently unfair and discriminatory.\")\n",
+        "\n",
+        "# 2. Discuss the ethical and legal implications of using gender and age as direct scoring factors.\n",
+        "print(\"\\n2. Ethical and Legal Implications:\")\n",
+        "print(\"   Using gender and age as direct scoring factors in a job application system has significant ethical and legal consequences.\")\n",
+        "print(\"   - Ethical Concerns: It is unethical to base hiring decisions on protected characteristics like gender and age rather than qualifications and merit.\")\n",
+        "print(\"   - Legal Implications: Many jurisdictions have anti-discrimination laws that prohibit discrimination based on gender and age in employment.\")\n",
+        "print(\"   Implementing such a system could lead to legal challenges, fines, and reputational damage for an organization.\")\n",
+        "\n",
+        "# 3. Suggest improvements to mitigate these biases.\n",
+        "print(\"\\n3. Suggested Improvements to Mitigate Biases:\")\n",
+        "print(\"   To make the scoring system fair and unbiased, the following improvements are crucial:\")\n",
+        "print(\"   - Remove Gender as a Scoring Factor: Gender should not be used as a factor in calculating an applicant's score. Focus solely on job-related qualifications.\")\n",
+        "print(\"   - Remove Age as a Direct Scoring Factor: Instead of using age ranges, focus on relevant experience and skills that may correlate with age but are not directly tied to it.\")\n",
+        "print(\"   - Focus on Job-Related Qualifications: Redesign the scoring logic to prioritize factors directly relevant to the job requirements, such as specific skills, relevant experience, education, and past performance.\")\n",
+        "print(\"   - Use Unbiased Data for Training (if using machine learning): If the scoring system were to evolve into a machine learning model, ensure the training data is free from historical biases related to gender, age, or other protected characteristics.\")\n",
+        "\n",
+        "# 4. Briefly mention the importance of regularly reviewing and validating scoring models for fairness and bias.\n",
+        "print(\"\\n4. Importance of Regular Review and Validation:\")\n",
+        "print(\"   Even with initial improvements, it is essential to regularly review and validate the scoring model for fairness and bias over time.\")\n",
+        "print(\"   - Monitor Outcomes: Continuously monitor the hiring outcomes to ensure the system is not inadvertently producing disparate impacts on certain groups.\")\n",
+        "print(\"   - Bias Detection Tools: Utilize bias detection tools and techniques to identify and mitigate subtle biases that may emerge.\")\n",
+        "print(\"   - Retrain/Adjust Model: Be prepared to retrain or adjust the scoring logic as needed to maintain fairness and accuracy.\")"
+      ],
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Based on the review of the scoring logic, here's an explanation of the security risks (specifically related to bias) and suggested improvements:\n",
+            "\n",
+            "1. Identified Biases Related to Gender and Age:\n",
+            "   The current scoring system explicitly assigns different scores based on an applicant's gender and age.\n",
+            "   - Gender Bias: Assigning more points to one gender over others is a direct form of discrimination.\n",
+            "   - Age Bias: Favoring a specific age range (25-40) and penalizing younger or older applicants is age discrimination.\n",
+            "   These biases are hardcoded into the scoring logic, making the system inherently unfair and discriminatory.\n",
+            "\n",
+            "2. Ethical and Legal Implications:\n",
+            "   Using gender and age as direct scoring factors in a job application system has significant ethical and legal consequences.\n",
+            "   - Ethical Concerns: It is unethical to base hiring decisions on protected characteristics like gender and age rather than qualifications and merit.\n",
+            "   - Legal Implications: Many jurisdictions have anti-discrimination laws that prohibit discrimination based on gender and age in employment.\n",
+            "   Implementing such a system could lead to legal challenges, fines, and reputational damage for an organization.\n",
+            "\n",
+            "3. Suggested Improvements to Mitigate Biases:\n",
+            "   To make the scoring system fair and unbiased, the following improvements are crucial:\n",
+            "   - Remove Gender as a Scoring Factor: Gender should not be used as a factor in calculating an applicant's score. Focus solely on job-related qualifications.\n",
+            "   - Remove Age as a Direct Scoring Factor: Instead of using age ranges, focus on relevant experience and skills that may correlate with age but are not directly tied to it.\n",
+            "   - Focus on Job-Related Qualifications: Redesign the scoring logic to prioritize factors directly relevant to the job requirements, such as specific skills, relevant experience, education, and past performance.\n",
+            "   - Use Unbiased Data for Training (if using machine learning): If the scoring system were to evolve into a machine learning model, ensure the training data is free from historical biases related to gender, age, or other protected characteristics.\n",
+            "\n",
+            "4. Importance of Regular Review and Validation:\n",
+            "   Even with initial improvements, it is essential to regularly review and validate the scoring model for fairness and bias over time.\n",
+            "   - Monitor Outcomes: Continuously monitor the hiring outcomes to ensure the system is not inadvertently producing disparate impacts on certain groups.\n",
+            "   - Bias Detection Tools: Utilize bias detection tools and techniques to identify and mitigate subtle biases that may emerge.\n",
+            "   - Retrain/Adjust Model: Be prepared to retrain or adjust the scoring logic as needed to maintain fairness and accuracy.\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "1429eb03"
+      },
+      "source": [
+        "## Summary:\n",
+        "\n",
+        "### Data Analysis Key Findings\n",
+        "\n",
+        "*   The initial scoring system explicitly assigns different points based on gender (Female: \\$10 * weight, Male: \\$5 * weight, Other: \\$7 * weight) and age ranges (25-40: \\$50 * weight, <25: \\$30 * weight, >40: \\$40 * weight).\n",
+        "*   Directly scoring based on gender introduces a clear potential for bias and discrimination.\n",
+        "*   Scoring based on arbitrary age ranges can unfairly penalize applicants based on age, potentially leading to age discrimination.\n",
+        "*   These hardcoded biases have significant ethical and legal implications, as they violate anti-discrimination principles and laws in many jurisdictions.\n",
+        "\n",
+        "### Insights or Next Steps\n",
+        "\n",
+        "*   Remove gender and age as direct scoring factors from the system.\n",
+        "*   Redesign the scoring logic to prioritize job-related qualifications, relevant experience, and skills, which are better indicators of a candidate's suitability for a role.\n"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "----------------------------------------------------"
+      ],
+      "metadata": {
+        "id": "Jt16X6CCSggV"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "AGfBCyJHShbJ"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "task5.py"
+      ],
+      "metadata": {
+        "id": "ohiqW06FSiOc"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def greet_user(name, gender):\n",
+        "  if gender.lower()==\"male\":\n",
+        "    title=\"Mr.\"\n",
+        "  else:\n",
+        "    title=\"Mrs.\"\n",
+        "  return f\"Hello,{title} {name}! Welcome.\"\n",
+        "\n",
+        "# Example usage to display output\n",
+        "print(greet_user(\"Alice\", \"Female\"))\n",
+        "print(greet_user(\"Bob\", \"Male\"))"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "c2lfS1xiSjX3",
+        "outputId": "a4ba7a10-d2d7-40b3-cfcb-10161d5e2a81"
+      },
+      "execution_count": null,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Hello,Mrs. Alice! Welcome.\n",
+            "Hello,Mr. Bob! Welcome.\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
